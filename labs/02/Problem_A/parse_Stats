@@ -1,0 +1,20 @@
+
+grep -i 'int computation  ' sa1core_blocking.txt
+grep -i 'fp computation  ' sa1core_blocking.txt
+grep -i 'trap  ' sa1core_blocking.txt
+grep -i 'sim_inst_class_prof.total' sa1core_blocking.txt
+grep -i 'sim_num_insn' sa1core_blocking.txt
+grep -i 'sim_num_loads' sa1core_blocking.txt
+grep -i 'sim_num_stores' sa1core_blocking.txt
+grep -i 'sim_num_branches ' sa1core_blocking.txt
+grep -i 'sim_cycle ' sa1core_blocking.txt
+grep -i 'sim_IPC ' sa1core_blocking.txt
+grep -i 'sim_CPI ' sa1core_blocking.txt
+grep -i 'dl1.accesses ' sa1core_blocking.txt
+grep -i 'dl1.hits ' sa1core_blocking.txt
+grep -i 'dl1.misses ' sa1core_blocking.txt
+grep -i 'dl1.miss_rate ' sa1core_blocking.txt
+grep -i 'il1.accesses ' sa1core_blocking.txt
+grep -i 'il1.hits ' sa1core_blocking.txt
+grep -i 'il1.misses ' sa1core_blocking.txt
+grep -i 'il1.miss_rate ' sa1core_blocking.txt
