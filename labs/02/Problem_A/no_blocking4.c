@@ -62,19 +62,25 @@ int main(void) {
 	//			printf("x[i][j+1]: %d\t", x[i][j+1]);
 				x[i+1][j+1]	= x[i+1][j+1] + y[i+1][k] * z[k][j+1];
 	//			printf("x[i+1][j+1]: %d\n", x[i+1][j+1]);
+				x[i+2][j] 	= x[i+2][j] + y[i+2][k] * z[k][j];
+				x[i+3][j] 	= x[i+3][j] + y[i+3][k] * z[k][j];
+				x[i][j+2]	= x[i][j+2] + y[i][k] * z[k][j+2];
+				x[i][j+3]	= x[i][j+3] + y[i][k] * z[k][j+3];
+				x[i+2][j+2]	= x[i+2][j+2] + y[i+2][k] * z[k][j+2];
+				x[i+3][j+3]	= x[i+3][j+3] + y[i+3][k] * z[k][j+3];
 			}
 			x[i][j] = m;
-			j++;
+			j+=3;
 		}
-		i++;
+		i+=3;
 	}
 
 	// for testing purposes
-/*	for (i = 0; i < MATRIX_SIZE; i++) {
+	for (i = 0; i < MATRIX_SIZE; i++) {
 		for (j = 0; j < MATRIX_SIZE; j++) {
 			printf("%d ", x[i][j]);
 		}
 		printf("\n");
 	}
-*/
+
 }
