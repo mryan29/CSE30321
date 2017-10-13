@@ -14,9 +14,9 @@ int main(void) {
   int y[XSIZE][YSIZE];
   int z[XSIZE][YSIZE];
 
-  int i, j, k, m;
+  int i, j, k;
 
-  int r;
+  int r0, r1, r2, r3;
 
 	printf("Initializing y matrix...\n");
   /* Initialize y matrix */
@@ -46,34 +46,36 @@ int main(void) {
 	printf("Building x matrix...\n");
 	for (i=0; i < MATRIX_SIZE-1; i++) {
 		for (j=0; j < MATRIX_SIZE-1; j++) {
-			m = 0;
-//			x[i][j] = 0;
+			r0 = 0;
+			r1 = 0;
+			r2 = 0;
+			r3 = 0;
+/*			x[i][j] = 0;
 			x[i+1][j] = 0;
 			x[i][j+1] = 0;
 			x[i+1][j+1]=0;
-			for(k=0; k < MATRIX_SIZE; k++) {
-	//			printf("i: %d, j: %d, k: %d\n", i, j, k);
-				m = m + y[i][k] * z[k][j];
-	//			printf("x[i][j]: %d\t", x[i][j]);
-				x[i+1][j] 	= x[i+1][j] + y[i+1][k] * z[k][j];
-	//			printf("x[i+1][j]: %d\t", x[i+1][j]);
-				x[i][j+1]	= x[i][j+1] + y[i][k] * z[k][j+1];
-	//			printf("x[i][j+1]: %d\t", x[i][j+1]);
-				x[i+1][j+1]	= x[i+1][j+1] + y[i+1][k] * z[k][j+1];
-	//			printf("x[i+1][j+1]: %d\n", x[i+1][j+1]);
+*/			for(k=0; k < MATRIX_SIZE; k++) {
+				r0	= r0 + y[i][k] * z[k][j];
+				r1	= r1 + y[i+1][k] * z[k][j];
+				r2	= r2 + y[i][k] * z[k][j+1];
+				r3	= r3 + y[i+1][k] * z[k][j+1];
 			}
-			x[i][j] = m;
+			x[i][j] 	= r0;
+			x[i+1][j]	= r1;
+			x[i][j+1]	= r2;
+			x[i+1][j+1]	= r3;
+
 			j++;
 		}
 		i++;
 	}
 
 	// for testing purposes
-/*	for (i = 0; i < MATRIX_SIZE; i++) {
+	for (i = 0; i < MATRIX_SIZE; i++) {
 		for (j = 0; j < MATRIX_SIZE; j++) {
 			printf("%d ", x[i][j]);
 		}
 		printf("\n");
 	}
-*/
+
 }

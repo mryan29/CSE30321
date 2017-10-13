@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define XSIZE 50
-#define YSIZE 50
-#define MATRIX_SIZE 50
+#define XSIZE 10
+#define YSIZE 10
+#define MATRIX_SIZE 10
 int main(void) {
 
   int x[XSIZE][YSIZE];
@@ -54,7 +54,7 @@ int main(void) {
 			x[i][j+1] = 0;
 			x[i+1][j+1]=0;
 			// unrolled 7 times
-			x[i+2][j]=0;
+/*			x[i+2][j]=0;
 			x[i][j+2]=0;
 			x[i+2][j+2]=0;
 			//unrolled 10 times
@@ -69,29 +69,25 @@ int main(void) {
 			x[i+5][j]=0;
 			x[i][j+5]=0;
 			x[i+5][j+5]=0;
-
+*/
 			for(k=0; k < MATRIX_SIZE; k++) {
 				// unrolled 4 times
 				m = m + y[i][k] * z[k][j];
 				x[i+1][j] 	= x[i+1][j] + y[i+1][k] * z[k][j];
 				x[i][j+1]	= x[i][j+1] + y[i][k] * z[k][j+1];
 				x[i+1][j+1]	= x[i+1][j+1] + y[i+1][k] * z[k][j+1];
-				
 				// unrolled 7 times
 				x[i+2][j] 	= x[i+2][j] + y[i+2][k] * z[k][j];
 				x[i][j+2]	= x[i][j+2] + y[i][k] * z[k][j+2];
 				x[i+2][j+2]	= x[i+2][j+2] + y[i+2][k] * z[k][j+2];
-				
 				// unrolled 10 times
 				x[i+3][j] 	= x[i+3][j] + y[i+3][k] * z[k][j];
 				x[i][j+3]	= x[i][j+3] + y[i][k] * z[k][j+3];
 				x[i+3][j+3]	= x[i+3][j+3] + y[i+3][k] * z[k][j+3];
-				
 				// unrolled 13 times
 				x[i+4][j] 	= x[i+4][j] + y[i+4][k] * z[k][j];
 				x[i][j+4]	= x[i][j+4] + y[i][k] * z[k][j+4];
 				x[i+4][j+4]	= x[i+4][j+4] + y[i+4][k] * z[k][j+4];
-				
 				// unrolled 16 times
 				x[i+5][j] 	= x[i+5][j] + y[i+5][k] * z[k][j];
 				x[i][j+5]	= x[i][j+5] + y[i][k] * z[k][j+5];
