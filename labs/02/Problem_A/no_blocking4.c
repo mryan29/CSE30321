@@ -15,9 +15,9 @@ int main(void) {
   int y[XSIZE][YSIZE];
   int z[XSIZE][YSIZE];
 
-  int i, j, k, m;
+  int i, j, k;
 
-  int r;
+  int r0, r1, r2, r3;
 
 	printf("Initializing y matrix...\n");
   /* Initialize y matrix */
@@ -48,36 +48,39 @@ int main(void) {
 	for (i=0; i < MATRIX_SIZE-5; i++) {
 		for (j=0; j < MATRIX_SIZE-5; j++) {
 			// unrolled 4 times
-			m = 0;
-//			x[i][j] = 0;
-			x[i+1][j] = 0;
-			x[i][j+1] = 0;
-			x[i+1][j+1]=0;
+			r0 = 0;
+			r1 = 0;
+			r2 = 0;
+			r3 = 0;
 			// unrolled 7 times
-/*			x[i+2][j]=0;
-			x[i][j+2]=0;
-			x[i+2][j+2]=0;
+			r4=0;
+			r5=0;
+			r6=0;
 			//unrolled 10 times
-			x[i+3][j]=0;
-			x[i][j+3]=0;
-			x[i+3][j+3]=0;
+			r7=0;
+			r8=0;
+			r9=0;
 			// unrolled 13 times
-			x[i+4][j]=0;
-			x[i][j+4]=0;
-			x[i+4][j+4]=0;
+			r10=0;
+			r11=0;
+			r12=0;
 			// unrolled 16 times
-			x[i+5][j]=0;
-			x[i][j+5]=0;
-			x[i+5][j+5]=0;
+			r13=0;
+			r14=0;
+			r15=0;
 */
 			for(k=0; k < MATRIX_SIZE; k++) {
-				// unrolled 4 times
+				r0	= r0 + y[i][k] * z[k][j];
+				r1	= r1 + y[i+1][k] * z[k][j];
+				r2	= r2 + y[i][k] * z[k][j+1];
+				r3	= r3 + y[i+1][k] * z[k][j+1];
+			/*	// unrolled 4 times
 				m = m + y[i][k] * z[k][j];
 				x[i+1][j] 	= x[i+1][j] + y[i+1][k] * z[k][j];
 				x[i][j+1]	= x[i][j+1] + y[i][k] * z[k][j+1];
 				x[i+1][j+1]	= x[i+1][j+1] + y[i+1][k] * z[k][j+1];
 				// unrolled 7 times
-				x[i+2][j] 	= x[i+2][j] + y[i+2][k] * z[k][j];
+			*/	r4 	= x[i+2][j] + y[i+2][k] * z[k][j];
 				x[i][j+2]	= x[i][j+2] + y[i][k] * z[k][j+2];
 				x[i+2][j+2]	= x[i+2][j+2] + y[i+2][k] * z[k][j+2];
 				// unrolled 10 times
@@ -92,8 +95,13 @@ int main(void) {
 				x[i+5][j] 	= x[i+5][j] + y[i+5][k] * z[k][j];
 				x[i][j+5]	= x[i][j+5] + y[i][k] * z[k][j+5];
 				x[i+5][j+5]	= x[i+5][j+5] + y[i+5][k] * z[k][j+5];
+			*/
 			}
-			x[i][j] = m;
+			x[i][j] 	= r0;
+			x[i+1][j]	= r1;
+			x[i][j+1]	= r2;
+			x[i+1][j+1]	= r3;
+
 			j+=5;
 		}
 		i+=5;
