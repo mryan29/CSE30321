@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define XSIZE 32
-#define YSIZE 32
-#define MATRIX_SIZE 32
+#define XSIZE 50
+#define YSIZE 50
+#define MATRIX_SIZE 50
 int main(void) {
 
   int x[XSIZE][YSIZE];
@@ -45,36 +45,62 @@ int main(void) {
 		x[i][j] replaced with variable m
 	*/
 	printf("Building x matrix...\n");
-	for (i=0; i < MATRIX_SIZE-3; i++) {
-		for (j=0; j < MATRIX_SIZE-3; j++) {
+	for (i=0; i < MATRIX_SIZE-5; i++) {
+		for (j=0; j < MATRIX_SIZE-5; j++) {
+			// unrolled 4 times
 			m = 0;
 //			x[i][j] = 0;
 			x[i+1][j] = 0;
 			x[i][j+1] = 0;
 			x[i+1][j+1]=0;
+			// unrolled 7 times
 			x[i+2][j]=0;
-			x[i+3][j]
+			x[i][j+2]=0;
+			x[i+2][j+2]=0;
+			//unrolled 10 times
+			x[i+3][j]=0;
+			x[i][j+3]=0;
+			x[i+3][j+3]=0;
+			// unrolled 13 times
+			x[i+4][j]=0;
+			x[i][j+4]=0;
+			x[i+4][j+4]=0;
+			// unrolled 16 times
+			x[i+5][j]=0;
+			x[i][j+5]=0;
+			x[i+5][j+5]=0;
+
 			for(k=0; k < MATRIX_SIZE; k++) {
-	//			printf("i: %d, j: %d, k: %d\n", i, j, k);
+				// unrolled 4 times
 				m = m + y[i][k] * z[k][j];
-	//			printf("x[i][j]: %d\t", x[i][j]);
 				x[i+1][j] 	= x[i+1][j] + y[i+1][k] * z[k][j];
-	//			printf("x[i+1][j]: %d\t", x[i+1][j]);
 				x[i][j+1]	= x[i][j+1] + y[i][k] * z[k][j+1];
-	//			printf("x[i][j+1]: %d\t", x[i][j+1]);
 				x[i+1][j+1]	= x[i+1][j+1] + y[i+1][k] * z[k][j+1];
-	//			printf("x[i+1][j+1]: %d\n", x[i+1][j+1]);
+				
+				// unrolled 7 times
 				x[i+2][j] 	= x[i+2][j] + y[i+2][k] * z[k][j];
-				x[i+3][j] 	= x[i+3][j] + y[i+3][k] * z[k][j];
 				x[i][j+2]	= x[i][j+2] + y[i][k] * z[k][j+2];
-				x[i][j+3]	= x[i][j+3] + y[i][k] * z[k][j+3];
 				x[i+2][j+2]	= x[i+2][j+2] + y[i+2][k] * z[k][j+2];
+				
+				// unrolled 10 times
+				x[i+3][j] 	= x[i+3][j] + y[i+3][k] * z[k][j];
+				x[i][j+3]	= x[i][j+3] + y[i][k] * z[k][j+3];
 				x[i+3][j+3]	= x[i+3][j+3] + y[i+3][k] * z[k][j+3];
+				
+				// unrolled 13 times
+				x[i+4][j] 	= x[i+4][j] + y[i+4][k] * z[k][j];
+				x[i][j+4]	= x[i][j+4] + y[i][k] * z[k][j+4];
+				x[i+4][j+4]	= x[i+4][j+4] + y[i+4][k] * z[k][j+4];
+				
+				// unrolled 16 times
+				x[i+5][j] 	= x[i+5][j] + y[i+5][k] * z[k][j];
+				x[i][j+5]	= x[i][j+5] + y[i][k] * z[k][j+5];
+				x[i+5][j+5]	= x[i+5][j+5] + y[i+5][k] * z[k][j+5];
 			}
 			x[i][j] = m;
-			j+=3;
+			j+=5;
 		}
-		i+=3;
+		i+=5;
 	}
 
 	// for testing purposes
