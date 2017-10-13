@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define XSIZE 100
-#define YSIZE 100
-#define MATRIX_SIZE 100
+#define XSIZE 32
+#define YSIZE 32
+#define MATRIX_SIZE 32
 int main(void) {
 
   int x[XSIZE][YSIZE];
@@ -45,13 +45,15 @@ int main(void) {
 		x[i][j] replaced with variable m
 	*/
 	printf("Building x matrix...\n");
-	for (i=0; i < MATRIX_SIZE-1; i++) {
-		for (j=0; j < MATRIX_SIZE-1; j++) {
+	for (i=0; i < MATRIX_SIZE-3; i++) {
+		for (j=0; j < MATRIX_SIZE-3; j++) {
 			m = 0;
 //			x[i][j] = 0;
 			x[i+1][j] = 0;
 			x[i][j+1] = 0;
 			x[i+1][j+1]=0;
+			x[i+2][j]=0;
+			x[i+3][j]
 			for(k=0; k < MATRIX_SIZE; k++) {
 	//			printf("i: %d, j: %d, k: %d\n", i, j, k);
 				m = m + y[i][k] * z[k][j];
