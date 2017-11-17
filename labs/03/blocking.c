@@ -1,20 +1,24 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MATRIX_SIZE 5 
-#define XSIZE 5 
-#define YSIZE 5
+#define MATRIX_SIZE 200 
+#define XSIZE 200
+#define YSIZE 200
+#define min( a, b ) ( ( a < b ) ? a : b ) 
 
 int main(void) {
+
+  int blockfactor=10;
+  int blocksize=XSIZE/blockfactor;
 
   int x[XSIZE][YSIZE];
   int y[XSIZE][YSIZE];
   int z[XSIZE][YSIZE];
 
-  int i, j, k;
-  int B = 1;
+  int i, j, k, ii, jj;
   
   int r;
+
 
   /* Initialize x matrix */
   for(i=0; i<XSIZE; i++) {
@@ -59,13 +63,16 @@ int main(void) {
 // I was using this link for reference before running out of time
 // http://csapp.cs.cmu.edu/2e/waside/waside-blocking.pdf
 
-  for (i=0; i < MATRIX_SIZE; i=i+B) {
-    for (j=0; j < MATRIX_SIZE; j=j+B) {
-      for (k=0; k < MATRIX_SIZE; k=k+B) {
-        x[i][j] = x[i][j] + y[i][k] * z[k][j];
+  for (i=0; i<XSIZE; i=i+blocksize) {
+    for (j=0; j<YSIZE; j=j+blocksize) {
+      for (k=0; k<XSIZE; k++) {
+        for (jj=j; jj < min(j + blocksize, XSIZE); jj++) {
+          for (ii=i; ii < min(i+blocksize, XSIZE); ii++) {
+            x[k][jj] += y[k][ii] * z[ii][jj];
+          }
+        }
       }
-      printf("%i ", x[i][j]);
     }
-    printf("\n");
   }
+
 }
