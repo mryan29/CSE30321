@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define XSIZE 100
-#define YSIZE 100
-#define MATRIX_SIZE 100
+#define XSIZE 200
+#define YSIZE 200
+#define MATRIX_SIZE 200
 int main(void) {
 
   int x[XSIZE][YSIZE];
@@ -39,10 +39,11 @@ int main(void) {
 	// MATRIX_SIZE captures both the row and column dimensions of all matrices
 	for (i=0; i < MATRIX_SIZE; i++) {
 		for (j=0; j < MATRIX_SIZE; j++) {
-			x[i][j] = 0;
+			r = 0;
 			for(k=0; k < MATRIX_SIZE; k++) {
-				x[i][j] = x[i][j] + y[i][k] * z[k][j];
+				r = r + y[i][k] * z[k][j];
 			}
+			x[i][j] = r;
 	//		printf("%d ", x[i][j]);
 		}
 	//	printf("\n");

@@ -16,25 +16,34 @@ int main(void) {
   
   int r;
 
+	printf("\nx matrix: \n");
   /* Initialize x matrix */
   for(i=0; i<XSIZE; i++) {
     for(j=0; j<YSIZE; j++) {
       x[i][j] = 0;
+      printf("%d\t", x[i][j]);
     }
+    printf("\n");
   }
 
+	printf("\ny matrix: \n");
   /* Initialize y matrix */
   for(i=0; i<XSIZE; i++) {
     for(j=0; j<YSIZE; j++) {
       y[i][j] = i + j;
+      printf("%d\t", y[i][j]);
     }
+    printf("\n");
   }
 
+	printf("\nz matrix: \n");
   /* Initialize z matrix */
   for(i=0; i<XSIZE; i++) {
     for(j=0; j<YSIZE; j++) {
 	z[i][j] = i + j;
+	printf("%d\t", z[i][j]);
     }
+    printf("\n");
   }
 
   /* Do matrix multiply */
@@ -59,6 +68,7 @@ int main(void) {
 // I was using this link for reference before running out of time
 // http://csapp.cs.cmu.edu/2e/waside/waside-blocking.pdf
 
+printf("matrix multiply w blocking(y*z): \n");
   for (i=0; i < MATRIX_SIZE; i=i+B) {
     for (j=0; j < MATRIX_SIZE; j=j+B) {
       for (k=0; k < MATRIX_SIZE; k=k+B) {

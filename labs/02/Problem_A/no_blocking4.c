@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define XSIZE 10
-#define YSIZE 10
-#define MATRIX_SIZE 10
+#define XSIZE 200
+#define YSIZE 200
+#define MATRIX_SIZE 200
 int main(void) {
 
   int x[XSIZE][YSIZE];
@@ -17,8 +17,7 @@ int main(void) {
 
   int i, j, k;
 
-  int r0, r1, r2, r3;
-
+  int r0, r1, r2, r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15;
 	printf("Initializing y matrix...\n");
   /* Initialize y matrix */
   for(i=0; i<XSIZE; i++) {
@@ -80,22 +79,21 @@ int main(void) {
 				x[i][j+1]	= x[i][j+1] + y[i][k] * z[k][j+1];
 				x[i+1][j+1]	= x[i+1][j+1] + y[i+1][k] * z[k][j+1];
 				// unrolled 7 times
-			*/	r4 	= x[i+2][j] + y[i+2][k] * z[k][j];
-				r5	= x[i][j+2] + y[i][k] * z[k][j+2];
-				r6	= x[i+2][j+2] + y[i+2][k] * z[k][j+2];
+			*/	r4 	= r4 + y[i+2][k] * z[k][j];
+				r5	= r5 + y[i][k] * z[k][j+2];
+				r6	= r6 + y[i+2][k] * z[k][j+2];
 				// unrolled 10 times
-				r7	= x[i+3][j] + y[i+3][k] * z[k][j];
-				r8	= x[i][j+3] + y[i][k] * z[k][j+3];
-				r9	= x[i+3][j+3] + y[i+3][k] * z[k][j+3];
+				r7	= r7 + y[i+3][k] * z[k][j];
+				r8	= r8 + y[i][k] * z[k][j+3];
+				r9	= r9 + y[i+3][k] * z[k][j+3];
 				// unrolled 13 times
-				r10 	= x[i+4][j] + y[i+4][k] * z[k][j];
-				r11	= x[i][j+4] + y[i][k] * z[k][j+4];
-				r12	= x[i+4][j+4] + y[i+4][k] * z[k][j+4];
+				r10 = r10 + y[i+4][k] * z[k][j];
+				r11	= r11 + y[i][k] * z[k][j+4];
+				r12	= r12 + y[i+4][k] * z[k][j+4];
 				// unrolled 16 times
-				r13 	= x[i+5][j] + y[i+5][k] * z[k][j];
-				r14	= x[i][j+5] + y[i][k] * z[k][j+5];
-				r15	= x[i+5][j+5] + y[i+5][k] * z[k][j+5];
-			
+				r13 = r13 + y[i+5][k] * z[k][j];
+				r14	= r14 + y[i][k] * z[k][j+5];
+				r15	= r15 + y[i+5][k] * z[k][j+5];
 			}
 			x[i][j] 	= r0;
 			x[i+1][j]	= r1;
@@ -114,11 +112,11 @@ int main(void) {
 			x[i][j+5]	= r14;
 			x[i+5][j+5]	= r15;
 
-			j+=5;
+			j = j + 5;
 		}
-		i+=5;
+		i = i + 5;
 	}
-
+/*
 	// for testing purposes
 	for (i = 0; i < MATRIX_SIZE; i++) {
 		for (j = 0; j < MATRIX_SIZE; j++) {
@@ -126,5 +124,5 @@ int main(void) {
 		}
 		printf("\n");
 	}
-
+*/
 }
