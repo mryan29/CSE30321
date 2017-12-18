@@ -22,7 +22,7 @@
 #include <time.h>
 #include "utils.h"
 
-int threshold = 255;
+int threshold = 80;
 
 /************************************************************************************
  * Input   : input image, pointer to output result, coefficients bias and weights
@@ -344,7 +344,7 @@ int main(void) {
   read_weight1("data/weight04.bin", 80*8, weight4);
 
   //compute input name
-  sprintf(imagename,"data/test%06d.pgm",46);
+  sprintf(imagename,"../a1/alternative_image/data/test%06d.pgm",46);
 
   //read image from file
   read_image_pgm(in_image, imagename, 1280, 720);

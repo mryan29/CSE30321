@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define XSIZE 5
-#define YSIZE 5
+#define XSIZE 200
+#define YSIZE 200
+#define min( a, b ) ( ( a < b ) ? a : b )
 
 int main(void) {
 
@@ -43,8 +44,6 @@ int main(void) {
         r = r + y[i][k] * z[k][j];
       }
       x[i][j] = r;
-      printf("%i ", r);
     }
-    printf("\n");
   }
 }
