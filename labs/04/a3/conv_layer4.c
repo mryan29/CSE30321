@@ -22,7 +22,7 @@
 #include <time.h>
 #include "utils.h"
 
-int threshold = 255;
+int threshold = 0;
 
 /************************************************************************************
  * Input   : input image, pointer to output result, coefficients bias and weights
